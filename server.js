@@ -14,15 +14,15 @@ app.use(
 );
 app.use(bodyParser.json());
 // DB Config
-const db = require(process.env.MONGO_URI);
-// Connect to MongoDB
-mongoose
-  .connect(
-    db,
-    { useNewUrlParser: true }
-  )
-  .then(() => console.log("MongoDB successfully connected"))
-  .catch(err => console.log(err));
+let uri = 'mongodb://heroku_1hf7s6jf:2bmfd25941olvgqkbebt97rb9m@ds337985.mlab.com:37985/heroku_1hf7s6jf';
+
+mongoose.connect(uri);
+
+let db = mongoose.connection;
+
+db.on('error', console.error.bind(console, 'connection error:'));
+
+db.once('open', function callback() {
 
 // Passport middleware
 app.use(passport.initialize());
@@ -48,4 +48,12 @@ if(process.env.NODE_ENV ==="production") {
 
 
 
-app.listen(port, () => console.log(`Server up and running on port ${port} !`));
+app.listen(port, () => console.log(`Server up and running on port ${port} !`))
+
+.catch(err => {
+
+  // Log any errors that are thrown in the Promise chain
+  console.log(err)
+
+})
+});
