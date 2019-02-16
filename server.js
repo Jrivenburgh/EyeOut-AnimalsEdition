@@ -15,7 +15,7 @@ app.use(
 app.use(bodyParser.json());
 // DB Config
 const MongoClient = require('mongodb').MongoClient;
-const uri = mongoURI;
+const uri = process.env.mongoURI;
 const client = new MongoClient(uri, { useNewUrlParser: true });
 client.connect(err => {
   const collection = client.db("User").collection("users");
