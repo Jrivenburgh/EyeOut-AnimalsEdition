@@ -5,7 +5,7 @@ const passport = require("passport");
 const path = require("path");
 const users = require("./routes/api/users");
 const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://jurassicjosh:x8YTIi8TgH095sSs@eyeout-ngqhj.mongodb.net/Users?retryWrites=true"
+const uri = "mongodb://jurassicjosh:x8YTIi8TgH095sSs@eyeout-shard-00-00-ngqhj.mongodb.net:27017,eyeout-shard-00-01-ngqhj.mongodb.net:27017,eyeout-shard-00-02-ngqhj.mongodb.net:27017/User?ssl=true&replicaSet=EyeOut-shard-0&authSource=admin&retryWrites=true"
 const app = express();
 // Bodyparser middleware
 app.use(
@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 
 const client = new MongoClient(uri, { useNewUrlParser: true });
 client.connect(err => {
-  const collection = client.db("test").collection("devices");
+  const collection = client.db("User").collection("users");
 
 // Passport middleware
 app.use(passport.initialize());
