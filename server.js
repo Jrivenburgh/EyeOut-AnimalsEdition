@@ -5,13 +5,7 @@ const passport = require("passport");
 const path = require("path");
 const users = require("./routes/api/users");
 const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://jurassicjosh:x8YTIi8TgH095sSs@eyeout-ngqhj.mongodb.net/Users";
-const client = new MongoClient(uri, { useNewUrlParser: true });
-client.connect(err => {
-  const collection = client.db("User").collection("users");
- // perform actions on the collection object
-  
-
+const uri = "mongodb+srv://jurassicjosh:x8YTIi8TgH095sSs@eyeout-ngqhj.mongodb.net/Users?retryWrites=true"
 const app = express();
 // Bodyparser middleware
 app.use(
@@ -21,6 +15,10 @@ app.use(
 );
 app.use(bodyParser.json());
 // DB Config
+
+const client = new MongoClient(uri, { useNewUrlParser: true });
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
 
 // Passport middleware
 app.use(passport.initialize());
@@ -41,11 +39,8 @@ if(process.env.NODE_ENV ==="production") {
   });
 
 }
-client.close();
-});
-
-
-
-
 
 app.listen(port, () => console.log(`Server up and running on port ${port} !`));
+
+client.close();
+});
