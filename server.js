@@ -4,8 +4,7 @@ const bodyParser = require("body-parser");
 const passport = require("passport");
 const path = require("path");
 const users = require("./routes/api/users");
-const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb://jurassicjosh:x8YTIi8TgH095sSs@eyeout-shard-00-00-ngqhj.mongodb.net:27017,eyeout-shard-00-01-ngqhj.mongodb.net:27017,eyeout-shard-00-02-ngqhj.mongodb.net:27017/User?ssl=true&replicaSet=EyeOut-shard-0&authSource=admin&retryWrites=true"
+
 const app = express();
 // Bodyparser middleware
 app.use(
@@ -15,10 +14,15 @@ app.use(
 );
 app.use(bodyParser.json());
 // DB Config
-
-const client = new MongoClient(uri, { useNewUrlParser: true });
-client.connect(err => {
-  const collection = client.db("User").collection("users");
+const db = require(process.env.MONGO_URI);
+// Connect to MongoDB
+mongoose
+  .connect(
+    db,
+    { useNewUrlParser: true }
+  )
+  .then(() => console.log("MongoDB successfully connected"))
+  .catch(err => console.log(err));
 
 // Passport middleware
 app.use(passport.initialize());
@@ -40,7 +44,8 @@ if(process.env.NODE_ENV ==="production") {
 
 }
 
-app.listen(port, () => console.log(`Server up and running on port ${port} !`));
 
-client.close();
-});
+
+
+
+app.listen(port, () => console.log(`Server up and running on port ${port} !`));
