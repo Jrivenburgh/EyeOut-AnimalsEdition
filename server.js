@@ -14,15 +14,15 @@ app.use(
 );
 app.use(bodyParser.json());
 // DB Config
-const db = require("./config/keys").mongoURI;
-// Connect to MongoDB
-mongoose
-  .connect(
-    db,
-    { useNewUrlParser: true }
-  )
-  .then(() => console.log("MongoDB successfully connected"))
-  .catch(err => console.log(err));
+const MongoClient = require('mongodb').MongoClient;
+const uri = mongoURI;
+const client = new MongoClient(uri, { useNewUrlParser: true });
+client.connect(err => {
+  const collection = client.db("User").collection("users");
+ // perform actions on the collection object
+  client.close();
+});
+  
 
 // Passport middleware
 app.use(passport.initialize());
