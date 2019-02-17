@@ -8,13 +8,12 @@ class Landing extends Component {
         <div className="row">
           <div className="col s12 center-align">
             <h4>
-              <b>Build</b> a login/auth app with the{" "}
-              <span style={{ fontFamily: "monospace" }}>MERN</span> stack from
-              scratch
+              <b>Register</b> and add your animals now with {" "}
+              <span style={{ fontFamily: "monospace" }}>EyeOut</span> lost pet alert.
             </h4>
             <p className="flow-text grey-text text-darken-1">
-              Create a (minimal) full-stack app with user authentication via
-              passport and JWTs
+              Using your lost pets information and last known location to alert other users to keep an {" "}
+              <span style={{ fontFamily: "monospace" }}>EyeOut</span> for your pet and help bring the home!
             </p>
             <br />
             <div className="col s6">

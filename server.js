@@ -33,7 +33,7 @@ app.use("/api/users", users);
 
 const port = process.env.PORT || 5000; // process.env.port is Heroku's port if you choose to deploy the app there
 
-// Serve Static assets if in Prodcution
+// Serve Static assets if in Production
 if(process.env.NODE_ENV ==="production") {
   // Set Static folder
   app.use(express.static("client/build"));
