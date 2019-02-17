@@ -1,0 +1,16 @@
+
+  
+.material-icons {
+      animation: App-logo-spin infinite 10s linear;
+        height: 5vmin;
+    }
+  
+  @keyframes App-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  

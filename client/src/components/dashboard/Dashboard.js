@@ -19,7 +19,7 @@ return (
                 You are logged into {" "}
                 <span style={{ fontFamily: "monospace" }}>EyeOut</span> 
                 <br></br>
-                Add you Animals
+                Add your Animals
               </p>
             </h4>
             <button
